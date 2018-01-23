@@ -1,0 +1,21 @@
+version: 0.1
+log:
+    fields:
+        service: registry
+http:
+    addr: :5000
+storage:
+    cache:
+        layerinfo: inmemory
+    s3:
+        accesskey: #AWS_KEY#
+        secretkey: #AWS_SECRET#
+        region: #AWS_REGION#
+        bucket: #AWS_BUCKET#
+        encrypt: #ENCRYPT#
+        secure:  #SECURE#
+        chunksize: 5242880
+        multipartcopychunksize: 33554432
+        multipartcopymaxconcurrency: 100
+        multipartcopythresholdsize: 33554432
+        rootdirectory: #STORAGE_PATH#
