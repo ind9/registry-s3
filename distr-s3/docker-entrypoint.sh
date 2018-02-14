@@ -13,9 +13,22 @@ if [ -z ${AWS_REGION+x} ]; then
     failure=1
 fi
 
+if [ -z ${HTPASSWD_REALM+x} ]; then 
+    echo "Env Variable HTPASSWD_REALM is missing"
+    failure=1
+fi
+
+if [ -z ${HTPASSWD_PATH+x} ]; then
+    echo "Env variable HTPASSWD_PATH is missing"
+    failure=1
+fi
+
 if [ $failure == 1 ]; then
     exit 1
 fi
+
+aws s3 cp s3://$HTPASSWD_PATH/htpasswd /var/lib/htpasswd
+
 
 cat $config_file | \
     sed "s@#STORAGE_PATH#@$STORAGE_PATH@g" |\
@@ -24,7 +37,8 @@ cat $config_file | \
     sed "s@#AWS_KEY#@$AWS_KEY@g" |\
     sed "s@#AWS_SECRET#@$AWS_SECRET@g" |\
     sed "s@#ENCRYPT#@$ENCRYPT@g" |\
-    sed "s@#SECURE#@$SECURE@g" > /tmp/config-registry.yml
+    sed "s@#SECURE#@$SECURE@g" |\
+    sed "s@#HTPASSWD_REALM#@$HTPASSWD_REALM@g"  > /tmp/config-registry.yml
 
 
 # Run the Docker CMD passed in
