@@ -16,3 +16,8 @@ docker run \
   -p 5000:5000 \
   ind9/registry-s3
 ```
+
+## CI for dockerhub
+
+- Creating new tags with your commit will create automated builds in dockerhub.
+- Tags follow format v1.0.2 (for automated build rules)
