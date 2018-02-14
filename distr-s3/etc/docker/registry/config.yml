@@ -19,3 +19,7 @@ storage:
         multipartcopymaxconcurrency: 100
         multipartcopythresholdsize: 33554432
         rootdirectory: #STORAGE_PATH#
+auth:
+    htpasswd:
+        realm: #HTPASSWD_REALM#
+        path: /var/lib/htpasswd
