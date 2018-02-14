@@ -18,6 +18,10 @@ ENV STORAGE_PATH="/" ENCRYPT=true SECURE=false
 
 COPY distr-s3/docker-entrypoint.sh  /
 
+RUN apk add --update python py-pip python-dev
+
+RUN pip install awscli
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 COPY distr-s3/etc/docker/registry/config.yml /etc/docker/registry/config.yml
