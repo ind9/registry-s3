@@ -12,6 +12,8 @@ docker run \
   -e AWS_KEY= <aws key>\
   -e AWS_SECRET= <aws secret key> \
   -e AWS_REGION="us-east-1" \
+  -e HTPASSWD_REALM="indix" \
+  -e HTPASSWD_PATH= <aws bucket with htpasswd> \
   -e STORAGE_PATH=/registry \
   -p 5000:5000 \
   ind9/registry-s3
